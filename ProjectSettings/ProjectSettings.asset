@@ -353,6 +353,7 @@ PlayerSettings:
   switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
   switchUseGOLDLinker: 0
+  switchLTOSetting: 0
   switchApplicationID: 0x01004b9000490000
   switchNSODependencies: 
   switchTitleNames_0: 
@@ -588,7 +589,6 @@ PlayerSettings:
   suppressCommonWarnings: 1
   allowUnsafeCode: 0
   useDeterministicCompilation: 1
-  useReferenceAssemblies: 1
   enableRoslynAnalyzers: 1
   additionalIl2CppArgs: 
   scriptingRuntimeVersion: 1
@@ -677,7 +677,7 @@ PlayerSettings:
   cloudProjectId: 21adf0b4-ff63-452c-8dec-e0f3b3e017c6
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Dominos
+  projectName: Marbles
   organizationId: arthiran
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
