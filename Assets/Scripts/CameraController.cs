@@ -7,9 +7,16 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform Player;
     [SerializeField]
-    private Vector3 Offset = new Vector3(0, 2.75f, -10);
-    [SerializeField]
     private float smoothSpeed = 0.05f;
+    [SerializeField]
+    private float RotateSpeed = 1f;
+
+    private Vector3 Offset;
+
+    private void Awake()
+    {
+        Offset = transform.position;
+    }
 
     private void FixedUpdate()
     {

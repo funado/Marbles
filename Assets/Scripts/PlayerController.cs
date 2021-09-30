@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,11 +16,19 @@ public class PlayerController : MonoBehaviour
     private float RayDistanceGround = 0.016f;
     [SerializeField]
     private LayerMask GroundLayerMask;
+    [SerializeField]
+    private LayerMask OutOfBoundsMask;
+    [SerializeField]
+    private GameObject EndUI;
+    [SerializeField]
+    private TextMeshProUGUI WinLossText;
 
     private float VVelocity;
     private float HVelocity;
 
     private bool CanJump = false;
+
+    private bool HasLost = false;
 
     private void Awake()
     {
@@ -30,6 +39,15 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         bool CheckGrounded = IsGrounded();
+        bool CheckOutOfBounds = IsOutOfBounds();
+
+        if (HasLost)
+        {
+            EndUI.SetActive(true);
+            WinLossText.text = "GAME OVER";
+            return;
+        }
+
         VVelocity = Input.GetAxisRaw("Vertical");
         HVelocity = Input.GetAxisRaw("Horizontal");
 
@@ -37,6 +55,8 @@ public class PlayerController : MonoBehaviour
         {
             CanJump = CheckGrounded;
         }
+
+        HasLost = CheckOutOfBounds;
     }
 
     private void FixedUpdate()
@@ -47,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovePlayer()
     {
-        rb.AddTorque(VVelocity * MoveSpeed, rb.velocity.y, -HVelocity * MoveSpeed);
+        rb.AddTorque(VVelocity * MoveSpeed * 100, rb.velocity.y, -HVelocity * MoveSpeed * 100);
     }
 
     private void Jump()
@@ -71,6 +91,29 @@ public class PlayerController : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private bool IsOutOfBounds()
+    {
+        Debug.DrawRay(SphereCol.bounds.center, Vector3.down * (SphereCol.bounds.extents.y + RayDistanceGround));
+
+        if (Physics.Raycast(SphereCol.bounds.center, Vector3.down, SphereCol.bounds.extents.y + RayDistanceGround, OutOfBoundsMask))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "FinishLine")
+        {
+            EndUI.SetActive(true);
+            WinLossText.text = "YOU'VE FINISHED";
         }
     }
 }
