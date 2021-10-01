@@ -8,7 +8,7 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform Player;
     [SerializeField]
-    private float smoothSpeed = 0.05f;
+    private float SmoothSpeed = 0.05f;
     [SerializeField]
     private float RotateSpeed = 1f;
 
@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     private void FixedUpdate()
     {
         // Smoothly changes camera position using Lerp
-        LerpCamera(Player.transform.position, smoothSpeed);
+        LerpCamera(Player.transform.position, SmoothSpeed);
     }
 
     private void LerpCamera(Vector3 newPos, float newSmooth)
