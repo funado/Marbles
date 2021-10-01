@@ -1,4 +1,9 @@
-# Dominos
+# Welcome to the Marbles Game Repository
+
+Game Instructions:
+
+In order to play, please unzip the "MarblesBuilds.zip" file. In the unzipped folder, you'll find the "Marbles.exe" file. Run this file and enjoy the game!
+
  
 Marble Game Description: 
 
