@@ -26,7 +26,7 @@ public class InputPlane : MonoBehaviour
                 //CubePlacer.PlaceCube(hitInfo.point, c, cubePrefab);
 
                 ICommand command = new PlaceCubeCommand(hitInfo.point, c, cubePrefab);
-                CommandInvoker.AddCopmmand(command);
+                CommandInvoker.AddCommand(command);
             }
         }
         

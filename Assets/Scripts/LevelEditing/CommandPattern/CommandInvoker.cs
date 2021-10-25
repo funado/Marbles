@@ -15,7 +15,7 @@ public class CommandInvoker : MonoBehaviour
         commandHistory = new List<ICommand>();
     }
 
-    public static void AddCopmmand(ICommand command)
+    public static void AddCommand(ICommand command)
     {
         while(commandHistory.Count > counter)
         {
