@@ -1,0 +1,8 @@
+﻿  GameObject.cpp
+     Creating library C:\Users\arthi\Documents\UnityProjects\MidtermProject\PluginProject\UnityPlugin\x64\Release\UnityPlugin.lib and object C:\Users\arthi\Documents\UnityProjects\MidtermProject\PluginProject\UnityPlugin\x64\Release\UnityPlugin.exp
+  Generating code
+  4 of 14 functions (28.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  UnityPlugin.vcxproj -> C:\Users\arthi\Documents\UnityProjects\MidtermProject\PluginProject\UnityPlugin\x64\Release\UnityPlugin.dll
