@@ -1,4 +1,4 @@
-// Arthiran Sivarajah - 100660300 : Wrapper.cpp
+// Arthiran Sivarajah - 100660300, Aaron Chan - 100657311 : Wrapper.cpp
 
 #include "Wrapper.h"
 #include "SaveLevel.h"

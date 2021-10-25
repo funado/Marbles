@@ -1,5 +1,7 @@
 // Content modified from Game Engine Design Tutorials
 // Author: Parisa Sargolzaei
+// Modified By: Arthiran Sivarajah - 100660300, Aaron Chan - 100657311
+
 
 using System.Collections;
 using System.Collections.Generic;
@@ -9,18 +11,18 @@ public class PlaceObjectCommand : ICommand
 {
     Vector3 position;
     Color color;
-    Transform cube;
+    Transform newObject;
 
-    public PlaceObjectCommand(Vector3 position, Color color, Transform cube)
+    public PlaceObjectCommand(Vector3 position, Color color, Transform _object)
     {
         this.position = position;
         this.color = color;
-        this.cube = cube;
+        this.newObject = _object;
     }
     
     public void Execute()
     {
-        ObjectPlacer.PlaceCube(position, color, cube);
+        ObjectPlacer.PlaceCube(position, color, newObject);
     }
 
     public void Undo()

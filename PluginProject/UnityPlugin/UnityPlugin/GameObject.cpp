@@ -1,4 +1,4 @@
-// Arthiran Sivarajah - 100660300 : GameObject.cpp
+// Arthiran Sivarajah - 100660300, Aaron Chan - 100657311 : GameObject.cpp
 
 #include "GameObject.h"
 #include <stdlib.h>

@@ -1,10 +1,12 @@
 // Content modified from Game Engine Design Tutorials 
 // Author: Parisa Sargolzaei
+// Modified By: Arthiran Sivarajah - 100660300, Aaron Chan - 100657311
 
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using TMPro;
 
@@ -41,9 +43,7 @@ public class LevelEditorManager : MonoBehaviour
 
     private const string PluginName = "UnityPlugin";
     private string folderLocation = Application.streamingAssetsPath + "\\";
-    private string fileName = "Level1";
     private const string textExtension = ".txt";
-    private string fileToSave;
 
     private List<GameObject> spawnables = new List<GameObject>();
     private int MaxElements = 10;
@@ -108,7 +108,8 @@ float rotationy, float rotationz, float scalex, float scaley, float scalez);
     {
         if (SaveInput.text != null)
         {
-            fileToSave = folderLocation + fileName + textExtension;
+            string cleanedInput = SaveInput.text.Substring(0, SaveInput.text.Length - 1);
+            string fileToSave = folderLocation + cleanedInput + textExtension;
             EditPrefabTransform[] spawnablestemp = FindObjectsOfType<EditPrefabTransform>();
             GameObject[] spawnableGameObjects = new GameObject[spawnablestemp.Length];
             if (spawnablestemp.Length > 0)
@@ -153,7 +154,8 @@ float rotationy, float rotationz, float scalex, float scaley, float scalez);
                     {
                         GameObject tempSpawnableObject;
                         tempSpawnableObject = Instantiate(TrackPrefabs[Mathf.RoundToInt(LoadFromFile(0 + infoSet, loadFile))].gameObject, new Vector3(LoadFromFile(1 + infoSet, loadFile), LoadFromFile(2 + infoSet, loadFile), LoadFromFile(3 + infoSet, loadFile)), Quaternion.Euler(LoadFromFile(4 + infoSet, loadFile), LoadFromFile(5 + infoSet, loadFile), LoadFromFile(6 + infoSet, loadFile)));
-                        tempSpawnableObject.transform.localScale = new Vector3(LoadFromFile(7 + infoSet, loadFile), LoadFromFile(8 + infoSet, loadFile), LoadFromFile(8 + infoSet, loadFile));
+                        tempSpawnableObject.transform.localScale = new Vector3(LoadFromFile(7 + infoSet, loadFile), LoadFromFile(8 + infoSet, loadFile), LoadFromFile(9 + infoSet, loadFile));
+                        tempSpawnableObject.AddComponent<EditPrefabTransform>();
                         infoSet = infoSet + MaxElements;
                     }
                     loading = false;
@@ -170,6 +172,11 @@ float rotationy, float rotationz, float scalex, float scaley, float scalez);
     public void OpenLoadBox()
     {
         LoadBox.SetActive(!LoadBox.activeSelf && !SaveBox.activeSelf ? true : false);
+    }
+
+    public void ClearScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ChangeObjectIndex(int index)

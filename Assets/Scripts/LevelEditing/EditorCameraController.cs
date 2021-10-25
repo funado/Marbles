@@ -12,7 +12,7 @@ public class EditorCameraController : MonoBehaviour
     private Vector3 CamPos;
     private Vector3 MouseDrag;
     private float MouseScroll;
-    private float DragLimit = 5f;
+    private float DragLimit = 10f;
 
     private void LateUpdate()
     {

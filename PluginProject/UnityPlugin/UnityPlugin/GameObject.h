@@ -1,4 +1,4 @@
-// Arthiran Sivarajah - 100660300 : GameObject.h
+// Arthiran Sivarajah - 100660300, Aaron Chan - 100657311 : GameObject.h
 
 #pragma once
 #ifndef __GAME_OBJECT__

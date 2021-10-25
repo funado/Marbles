@@ -1,4 +1,4 @@
-// Arthiran Sivarajah - 100660300 : Wrapper.h
+// Arthiran Sivarajah - 100660300, Aaron Chan - 100657311 : Wrapper.h
 
 #pragma once
 #ifndef __WRAPPER__

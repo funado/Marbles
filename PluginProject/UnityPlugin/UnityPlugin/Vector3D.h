@@ -1,4 +1,4 @@
-// Arthiran Sivarajah - 100660300 : Vector2D.h
+// Arthiran Sivarajah - 100660300, Aaron Chan - 100657311 : Vector2D.h
 
 #pragma once
 #ifndef __VECTOR3D__
