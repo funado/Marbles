@@ -24,12 +24,19 @@ Game Objects:
 
 Controls: 
 
-Movement: WASD Keys
-Jump: Space Key
+Game Scene:
+    Movement: WASD Keys
+    Jump: Space Key
+
+Level Editor Scene:
+    Movement: Right Mouse Button (Drag)
+    Place Objects: Left Mouse Button
 
 UML:
 
 ![Alt Text](https://github.com/Arthiran/Marbles/blob/main/UML/UML1.png)
+![Alt Text](https://github.com/Arthiran/Marbles/blob/main/UML/UML2.png)
+![Alt Text](https://github.com/Arthiran/Marbles/blob/main/UML/UML3.png)
 
 External Assets Acknowledgement:
 - Used Command Pattern code from Game Engine Design Tutorial

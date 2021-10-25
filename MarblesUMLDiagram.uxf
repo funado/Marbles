@@ -51,4 +51,16 @@
 --
 + Restart() : void</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>300</x><y>1030</y><w>210</w><h>70</h></coordinates><panel_attributes>Image &lt;&lt;Component
 --
-+ Color : Color</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>1020</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element></diagram>
++ Color : Color</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>200</x><y>1020</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>10</x><y>920</y><w>180</w><h>30</h></coordinates><panel_attributes>RestartGame : MonoBehaviour</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>720</x><y>660</y><w>210</w><h>150</h></coordinates><panel_attributes>Command Manager
+--
+--
++ execute(List&lt;Action&gt; actions)
++ undo()
++ redo()
++ clear()</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1020</x><y>660</y><w>150</w><h>30</h></coordinates><panel_attributes>QueueStackNormal</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>920</x><y>700</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1020</x><y>710</y><w>150</w><h>30</h></coordinates><panel_attributes>QueueStackReverse</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>920</x><y>650</y><w>120</w><h>30</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;100;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>720</x><y>900</y><w>210</w><h>40</h></coordinates><panel_attributes>&lt;Interface&gt;
+Action
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>800</y><w>30</w><h>120</h></coordinates><panel_attributes>lt=&lt;-</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>720</x><y>1020</y><w>210</w><h>70</h></coordinates><panel_attributes>Action Implementation
+--
+--
++ execute() : void;
++ undo() : void;</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>710</x><y>930</y><w>30</w><h>110</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;-</panel_attributes><additional_attributes>10;10;10;90</additional_attributes></element></diagram>
