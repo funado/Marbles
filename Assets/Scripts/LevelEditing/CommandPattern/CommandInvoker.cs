@@ -1,3 +1,6 @@
+// Content modified from Game Engine Design Tutorials
+// Author: Parisa Sargolzaei
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -43,20 +46,30 @@ public class CommandInvoker : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Z))
             {
-                if (counter > 0)
-                {
-                    counter--;
-                    commandHistory[counter].Undo();
-                }
+                UndoCommand();
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
-                if (counter < commandHistory.Count)
-                {
-                    commandHistory[counter].Execute();
-                    counter++;
-                }
+                RedoCommand();
             }
+        }
+    }
+
+    public void UndoCommand()
+    {
+        if (counter > 0)
+        {
+            counter--;
+            commandHistory[counter].Undo();
+        }
+    }
+
+    public void RedoCommand()
+    {
+        if (counter < commandHistory.Count)
+        {
+            commandHistory[counter].Execute();
+            counter++;
         }
     }
 }
