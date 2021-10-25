@@ -29,7 +29,7 @@ Jump: Space Key
 
 UML:
 
-![Alt Text](https://github.com/Arthiran/Marbles/blob/main/UML/UML1)
+![Alt Text](https://github.com/Arthiran/Marbles/blob/main/UML/UML1.png)
 
 External Assets Acknowledgement:
 - Used Command Pattern code from Game Engine Design Tutorial
