@@ -1,8 +1,9 @@
-// Content modified from Game Engine Design Tutorials
+// Content modified from Game Engine Design Tutorials 
 // Author: Parisa Sargolzaei
 
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -31,7 +32,33 @@ public class LevelEditorManager : MonoBehaviour
     public GameObject TransformBox;
     public GameObject TrackObjectBox;
 
+    public GameObject SaveBox;
+    public GameObject LoadBox;
+    public TMP_Text SaveInput;
+    public TMP_Text LoadInput;
+
     public TMP_Text CurrentObjectText;
+
+    private const string PluginName = "UnityPlugin";
+    private string folderLocation = Application.streamingAssetsPath + "\\";
+    private string fileName = "Level1";
+    private const string textExtension = ".txt";
+    private string fileToSave;
+
+    private List<GameObject> spawnables = new List<GameObject>();
+    private int MaxElements = 10;
+
+    [DllImport(PluginName)]
+    private static extern void SaveToFile(float objectNumber, float locationx, float locationy, float locationz, float rotationx,
+float rotationy, float rotationz, float scalex, float scaley, float scalez);
+    [DllImport(PluginName)]
+    private static extern float LoadFromFile(int j, string fileName);
+    [DllImport(PluginName)]
+    private static extern void StartWriting(string fileName);
+    [DllImport(PluginName)]
+    private static extern void EndWriting();
+    [DllImport(PluginName)]
+    private static extern int GetLines(string fileName);
 
 
     // Start is called before the first frame update
@@ -64,12 +91,85 @@ public class LevelEditorManager : MonoBehaviour
                     CommandInvoker.AddCommand(command);
                 }
             }
-            
-            /*if (Input.GetKeyDown(KeyCode.J))
-            {
-                ObjectIncrement = ObjectIncrement < MaxObjects ? ObjectIncrement + 1 : ObjectIncrement = 0;
-            }*/
         }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            SaveObjects();
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            LoadObjects();
+        }
+    }
+
+    public void SaveObjects()
+    {
+        if (SaveInput.text != null)
+        {
+            fileToSave = folderLocation + fileName + textExtension;
+            EditPrefabTransform[] spawnablestemp = FindObjectsOfType<EditPrefabTransform>();
+            GameObject[] spawnableGameObjects = new GameObject[spawnablestemp.Length];
+            if (spawnablestemp.Length > 0)
+            {
+                for (int i = 0; i < spawnablestemp.Length; i++)
+                {
+                    spawnableGameObjects[i] = spawnablestemp[i].gameObject;
+                }
+            }
+            spawnables.AddRange(spawnableGameObjects);
+            StartWriting(fileToSave);
+            for (int i = 0; i < TrackPrefabs.Count; i++)
+            {
+                for (int j = 0; j < spawnables.Count; j++)
+                {
+                    if (TrackPrefabs[i].name.ToLower() == spawnables[j].name.Substring(0, spawnables[j].gameObject.name.Length - 7).ToLower())
+                    {
+                        SaveToFile(i, spawnables[j].transform.position.x, spawnables[j].transform.position.y, spawnables[j].transform.position.z,
+                            spawnables[j].transform.eulerAngles.x, spawnables[j].transform.eulerAngles.y, spawnables[j].transform.eulerAngles.z,
+                            spawnables[j].transform.localScale.x, spawnables[j].transform.localScale.y, spawnables[j].transform.localScale.z);
+                    }
+                }
+            }
+            EndWriting();
+        }
+    }
+
+    public void LoadObjects()
+    {
+        if (LoadInput.text != null)
+        {
+            string cleanedInput = LoadInput.text.Substring(0, LoadInput.text.Length - 1);
+            string loadFile = folderLocation + cleanedInput + textExtension;
+            bool loading = true;
+            int infoSet = 0;
+
+            if (GetLines(loadFile) != 0)
+            {
+                while (loading)
+                {
+                    for (int i = 0; i <= (GetLines(loadFile) / MaxElements); i++)
+                    {
+                        GameObject tempSpawnableObject;
+                        tempSpawnableObject = Instantiate(TrackPrefabs[Mathf.RoundToInt(LoadFromFile(0 + infoSet, loadFile))].gameObject, new Vector3(LoadFromFile(1 + infoSet, loadFile), LoadFromFile(2 + infoSet, loadFile), LoadFromFile(3 + infoSet, loadFile)), Quaternion.Euler(LoadFromFile(4 + infoSet, loadFile), LoadFromFile(5 + infoSet, loadFile), LoadFromFile(6 + infoSet, loadFile)));
+                        tempSpawnableObject.transform.localScale = new Vector3(LoadFromFile(7 + infoSet, loadFile), LoadFromFile(8 + infoSet, loadFile), LoadFromFile(8 + infoSet, loadFile));
+                        infoSet = infoSet + MaxElements;
+                    }
+                    loading = false;
+                }
+            }
+        }
+    }
+
+    public void OpenSaveBox()
+    {
+        SaveBox.SetActive(!SaveBox.activeSelf && !LoadBox.activeSelf ? true : false);
+    }
+
+    public void OpenLoadBox()
+    {
+        LoadBox.SetActive(!LoadBox.activeSelf && !SaveBox.activeSelf ? true : false);
     }
 
     public void ChangeObjectIndex(int index)

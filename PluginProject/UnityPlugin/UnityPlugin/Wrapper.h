@@ -13,15 +13,16 @@ extern "C"
 {
 #endif
 
-	PLUGIN_API int GetID();
+	PLUGIN_API void SaveToFile(float objectNumber, float locationx, float locationy, float locationz, float rotationx,
+		float rotationy, float rotationz, float scalex, float scaley, float scalez);
 
-	PLUGIN_API void SetID(int id);
+	PLUGIN_API float LoadFromFile(int j, const char* fileName);
 
-	PLUGIN_API Vector3D GetPosition();
+	PLUGIN_API void StartWriting(const char* fileName);
 
-	PLUGIN_API void SetPosition(float x, float y, float z);
+	PLUGIN_API void EndWriting();
 
-	PLUGIN_API Vector3D GenerateRandomPosition();
+	PLUGIN_API int GetLines(const char* fileName);
 
 #ifdef __cplusplus
 }

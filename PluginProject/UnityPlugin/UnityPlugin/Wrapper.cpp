@@ -1,31 +1,33 @@
 // Arthiran Sivarajah - 100660300 : Wrapper.cpp
 
 #include "Wrapper.h"
-#include "GameObject.h"
+#include "SaveLevel.h"
 
-GameObject gameObject;
+SaveLevel saveLevel;
 
-PLUGIN_API int GetID()
+void SaveToFile(float objectNumber, float locationx, float locationy, float locationz, float rotationx,
+	float rotationy, float rotationz, float scalex, float scaley, float scalez)
 {
-	return gameObject.GetID();
+	saveLevel.SaveToFile(objectNumber, locationx, locationy, locationz, rotationx,
+		rotationy, rotationz, scalex, scaley, scalez);
 }
 
-PLUGIN_API void SetID(int id)
+float LoadFromFile(int j, const char* fileName)
 {
-	gameObject.SetID(id);
+	return saveLevel.LoadFromFile(j, fileName);
 }
 
-PLUGIN_API Vector3D GetPosition()
+void StartWriting(const char* fileName)
 {
-	return gameObject.GetPosition();
+	saveLevel.StartWriting(fileName);
 }
 
-PLUGIN_API void SetPosition(float x, float y, float z)
+void EndWriting()
 {
-	gameObject.SetPosition(x, y, z);
+	saveLevel.EndWriting();
 }
 
-PLUGIN_API Vector3D GenerateRandomPosition()
+int GetLines(const char* fileName)
 {
-	return gameObject.GenerateRandomPosition();
+	return saveLevel.GetLines(fileName);
 }
