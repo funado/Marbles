@@ -3,8 +3,8 @@
 Develppment Team:
 Warhorse Studios (Non-GDW)
 
-Aaron Chan - 100657311
-Arthiran Sivarajah - 100660300
+Aaron Chan (Command Design Programmer) - 100657311
+Arthiran Sivarajah (Factory Design Programmer) - 100660300
 
 Game Instructions:
 
