@@ -32,10 +32,14 @@ public class PlayerController : MonoBehaviour
 
     private bool HasLost = false;
 
+    private bool dirty_;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         SphereCol = GetComponent<SphereCollider>();
+
+        dirty_ = false;
     }
 
     private void Update()
@@ -64,6 +68,22 @@ public class PlayerController : MonoBehaviour
         }
 
         HasLost = CheckOutOfBounds;
+
+        if (dirty_)
+        {
+            List<string> pos = new List<string>();
+
+            pos.Add(rb.position.ToString());        
+
+            System.IO.File.WriteAllLines(Application.dataPath + "/positionFile.txt", pos);
+
+            dirty_ = false;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            dirty_ = true;
+        }
     }
 
     private void FixedUpdate()
