@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/LevelEditorScene.unity
     guid: 19caa295df230864a8eae8718f7e5efb
+  - enabled: 1
+    path: Assets/Scenes/DuckHunt.unity
+    guid: 277b3f9a4aac58c4e91efc5d2ce54555
   m_configObjects: {}

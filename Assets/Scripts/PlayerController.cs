@@ -3,6 +3,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 
 public class PlayerController : MonoBehaviour
@@ -33,6 +34,18 @@ public class PlayerController : MonoBehaviour
     private bool HasLost = false;
 
     private bool dirty_;
+
+    //Aim
+    private float movespeed;
+    private float dirX, dirZ;
+    private float rotX, rotY = 0.0f;
+    public float sensitivity;
+    public float msens = 200.0f;
+    public float clamp = 80.0f;
+
+    //Shoot
+    Camera cam;
+    RaycastHit hitInfo;
 
     private void Awake()
     {
@@ -91,6 +104,7 @@ public class PlayerController : MonoBehaviour
         // Player Movement/Jump handles in FixedUpdate
         Jump();
         MovePlayer();
+        Aim();
     }
 
     private void MovePlayer()
@@ -108,6 +122,42 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(JumpVector, ForceMode.Impulse);
             CanJump = false;
         }
+    }
+    private void Shoot()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            if(EventSystem.current.IsPointerOverGameObject(-1))
+            {
+                return;
+            }
+
+            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out hitInfo, Mathf.Infinity))
+            {
+                //RaycastHit hit;
+                Debug.Log("ye");
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private void Aim()
+    {
+        dirX = Input.GetAxis("Horizontal") * movespeed;
+        dirZ = Input.GetAxis("Vertical") * movespeed;
+
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = -Input.GetAxis("Mouse Y");
+
+        rotX += mouseY * msens * Time.deltaTime;
+        rotY += mouseX * msens * Time.deltaTime;
+
+
+        rotX = Mathf.Clamp(rotX, -clamp, clamp);
+
+        Quaternion localRotation = Quaternion.Euler(rotX, rotY, 0.0f);
+        transform.rotation = localRotation;
     }
 
     private bool IsGrounded()
